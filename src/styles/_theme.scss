@@ -1,0 +1,15 @@
+$baseColoer: red;
+$darkMode: #000;
+$lightMode: red;
+$fontColor: red;
+$fontBoldColor: red;
+$fontlightColor: red;
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('../assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
+.br_c {
+  border: 1px solid red;
+}
