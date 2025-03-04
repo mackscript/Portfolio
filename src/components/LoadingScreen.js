@@ -57,9 +57,7 @@ const LoadingScreen = ({ showContent }) => {
     });
     t1.to('#progress_bar', 2, { opacity: 0 })
       .to('#count', 1, { opacity: 0 }, '-=1')
-      .to('.loading_text', 1, { opacity: 0 }, '-=1')
-      .to('.loading_gif', 1, { opacity: 0 }, '-=1')
-      .to('.loading', 1, { y: '-100%', ease: Expo.easeInOut }, '+=0.2') // Loading screen goes up
+      .to('.loading', 1, { y: '-100%', ease: Expo.easeInOut }, '-=0.1') // Loading screen goes up
       .to('main', 0.8, { transform: 'translateY(-100%)' }, '-=0.5') // Delayed effect for main
       .to('main', 0, { display: 'none' });
   };
@@ -68,10 +66,7 @@ const LoadingScreen = ({ showContent }) => {
     <main>
       <div className='loading  '>
         {/* <div className='progress_two'></div> */}
-        <div className='loading_gif'>
-          <img src={Hermione} alt='Loading' />
-        </div>
-        <p className='loading_text'>Wingardium Leviosa</p>
+
         <div
           className='hide'
           id='progress_bar'

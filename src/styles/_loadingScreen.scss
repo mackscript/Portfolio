@@ -29,13 +29,7 @@ main {
         width: 300px;
       }
     }
-    .loading_text {
-      position: absolute;
-      font-size: 6rem;
-      color: #fff;
-      font-family: 'CustomFont', sans-serif;
-      justify-content: center;
-    }
+
     .progress_two {
       position: absolute;
       background-color: #777777;
@@ -49,11 +43,11 @@ main {
 
     #count {
       line-height: 0;
-      bottom: 0;
-      right: 20px;
+      // bottom: 0;
+      // right: 20px;
       position: absolute;
-      font-size: 100px;
-      font-family: 'CustomFont', sans-serif;
+      font-size: 200px;
+      font-family: 'Stagera', sans-serif;
       color: #fff;
       // opacity: 0;
       transform: translateY(-15px);

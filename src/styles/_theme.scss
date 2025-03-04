@@ -11,8 +11,16 @@ $fontlightColor: red;
 }
 
 @font-face {
-  font-family: 'CustomFont2';
-  src: url('../assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-family: 'Smoothing';
+  src: url('../assets/fonts/Smoothing.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Rockybilly';
+  src: url('../assets/fonts/Rockybilly.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Stagera';
+  src: url('../assets/fonts/Stagera.otf') format('truetype');
 }
 
 .br_c {
