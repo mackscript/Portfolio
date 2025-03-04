@@ -50,8 +50,9 @@ function App() {
 
   return (
     <div className='darkMode'>
+      <CustomCursor />
       <LoadingScreen showContent={() => showContent()} />
-      {!display ? <div className='bg-red'></div> : null}
+      {display ? <div className='container br_c'></div> : null}
     </div>
   );
 }

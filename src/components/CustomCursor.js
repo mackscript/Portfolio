@@ -1,84 +1,88 @@
 import React, { useState, useEffect } from 'react';
 
-const Circle = () => {
-  const [smallCircleX, setSmallCircleX] = useState(0);
-  const [smallCircleY, setSmallCircleY] = useState(0);
-  const [largeCircleCenterX, setLargeCircleCenterX] = useState(
-    WINDOW_WIDTH / 2
-  );
-  const [largeCircleCenterY, setLargeCircleCenterY] = useState(
-    WINDOW_HEIGHT / 2
-  );
+const CustomCursor = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [followerPosition, setFollowerPosition] = useState({ x: 0, y: 0 });
+  const [isHoveringLink, setIsHoveringLink] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      setSmallCircleX(event.clientX - 10); // adjust x-coordinate to move small circle around cursor
-      setSmallCircleY(event.clientY - 10); // adjust y-coordinate to move small circle around cursor
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
     };
+
+    const handleMouseEnter = (e) => {
+      // Null check and optional chaining to prevent errors
+      if (e?.target) {
+        const isPointerElement =
+          e.target.classList?.contains('pointer') ||
+          e.target.closest?.('.pointer');
+
+        if (isPointerElement) {
+          setIsHoveringLink(true);
+        }
+      }
+    };
+
+    const handleMouseLeave = (e) => {
+      // Null check and optional chaining to prevent errors
+      if (e?.target) {
+        const isPointerElement =
+          e.target.classList?.contains('pointer') ||
+          e.target.closest?.('.pointer');
+
+        if (isPointerElement) {
+          setIsHoveringLink(false);
+        }
+      }
+    };
+
+    // Use event delegation on the document
+    document.addEventListener('mouseenter', handleMouseEnter, true);
+    document.addEventListener('mouseleave', handleMouseLeave, true);
 
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
+      document.removeEventListener('mouseenter', handleMouseEnter, true);
+      document.removeEventListener('mouseleave', handleMouseLeave, true);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
   useEffect(() => {
-    const animate = () => {
-      if (smallCircleX < largeCircleCenterX - 25) {
-        setSmallCircleX(largeCircleCenterX - 25);
-      } else if (smallCircleX > largeCircleCenterX + 25) {
-        setSmallCircleX(largeCircleCenterX + 25);
-      }
-
-      if (smallCircleY < largeCircleCenterY - 25) {
-        setSmallCircleY(largeCircleCenterY - 25);
-      } else if (smallCircleY > largeCircleCenterY + 25) {
-        setSmallCircleY(largeCircleCenterY + 25);
-      }
+    const animateFollower = () => {
+      // Create a smoother interpolation
+      setFollowerPosition((prev) => ({
+        x: prev.x + (position.x - prev.x) * 0.2,
+        y: prev.y + (position.y - prev.y) * 0.2,
+      }));
     };
 
-    const animationDuration = 1000; // adjust duration to your liking
-    const animationTimingFunction = 'linear'; // adjust timing function to your liking
-
-    requestAnimationFrame(animate);
+    const animationFrame = requestAnimationFrame(animateFollower);
 
     return () => {
-      cancelAnimationFrame(animate);
+      cancelAnimationFrame(animationFrame);
     };
-  }, [smallCircleX, smallCircleY]);
+  }, [position]);
 
   return (
-    <div>
-      {/* large circle */}
+    <div className='fixed z-50 pointer-events-none'>
       <div
+        className={`cursor-dot ${isHoveringLink ? 'cursor-dot-large' : ''}`}
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: 25 * 2,
-          height: 25 * 2,
-          backgroundColor: '#ccc',
-          borderRadius: '50%',
+          left: `${position.x}px`,
+          top: `${position.y}px`,
         }}
       />
-
-      {/* small circle */}
       <div
+        className={`cursor-follower  `}
         style={{
-          position: 'absolute',
-          top: smallCircleY,
-          left: smallCircleX,
-          width: SMALL_CIRCLE_RADIUS * 2,
-          height: SMALL_CIRCLE_RADIUS * 2,
-          backgroundColor: '#f00',
-          borderRadius: '50%',
-          animationDuration,
-          animationTimingFunction,
+          left: `${followerPosition.x}px`,
+          top: `${followerPosition.y}px`,
         }}
       />
     </div>
   );
 };
 
-export default Circle;
+export default CustomCursor;

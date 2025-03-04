@@ -11,6 +11,7 @@ html {
   box-sizing: border-box;
   user-select: none;
   outline: none;
+  cursor: none;
 }
 
 @import './theme';
@@ -18,11 +19,14 @@ html {
 @import './loadingScreen';
 @import './header';
 @import './scrolltext';
+@import './cursor';
+
 // common css
 .darkMode {
   height: 100vh;
   width: 100%;
   background-color: $darkMode;
+  cursor: none;
 }
 
 .darkmode_color {
@@ -39,4 +43,12 @@ html {
   width: 90%;
   margin: auto;
   display: flex;
+}
+.bg-red {
+  padding: 20rem;
+  color: #fff;
+}
+a {
+  text-decoration: none;
+  color: #fff;
 }
