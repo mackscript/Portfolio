@@ -10,6 +10,11 @@ $fontlightColor: red;
   src: url('../assets/fonts/BebasNeue-Regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'CustomFont2';
+  src: url('../assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
 .br_c {
   border: 1px solid red;
 }

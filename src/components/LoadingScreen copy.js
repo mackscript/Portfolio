@@ -42,37 +42,13 @@ const LoadingScreen = ({ showContent }) => {
         { width: '100%', ease: Expo.easeInOut },
         '-=2.1'
       )
-      .to('.progress_two', 1.2, { width: 0, ease: Expo.easeInOut }, '-=1.1')
       .to('.loading', 1, { y: '-100%', ease: Expo.easeInOut }, '-=0.2')
-      .to(
-        '#shape-overlays path',
-        {
-          duration: 1.2,
-          attr: { d: 'M -0 -100 V 0 Q 50 0 100 0 V -100 z' },
-          ease: Expo.easeInOut,
-        },
-        '-=0.4'
-      )
-      .to('main', 1, { opacity: 0 }, '-=0.2')
-      .to('main', 1, { display: 'none' });
+      .to('main', 0.8, { transform: ' translateY(-100%)' }, '-=1.8141413')
+      .to('main', 0, { display: 'none' });
   };
 
   return (
     <main>
-      <svg
-        fill='blue'
-        id='shape-overlays'
-        className='overlay h-full w-full'
-        viewBox='0 0 100 100'
-        preserveAspectRatio='none'
-      >
-        <path
-          fill='blue'
-          className='overlay__path'
-          vectorEffect='non-scaling-stroke'
-          d='M 0 100 V 0 Q 50 0 100 0 V 100 z'
-        ></path>
-      </svg>
       <div className='loading'>
         <div className='progress_two'></div>
         <div
