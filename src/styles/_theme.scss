@@ -1,28 +1,36 @@
-$baseColoer: red;
+$gray: #c9c4c4;
+$white: #fff;
 $darkMode: #000;
+$darkModeLight: #837f7f;
 $lightMode: red;
 $fontColor: red;
 $fontBoldColor: red;
 $fontlightColor: red;
 
 @font-face {
-  font-family: 'CustomFont';
-  src: url('../assets/fonts/BebasNeue-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Smoothing';
-  src: url('../assets/fonts/Smoothing.ttf') format('truetype');
+  font-family: 'Bing';
+  src: url('../assets/fonts/Bing\ Bam\ Boum.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Rockybilly';
-  src: url('../assets/fonts/Rockybilly.ttf') format('truetype');
+  font-family: 'Eliza';
+  src: url('../assets/fonts/ElizaBaileyDemoRegular.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Stagera';
-  src: url('../assets/fonts/Stagera.otf') format('truetype');
+  font-family: 'Nunito';
+  src: url('../assets/fonts/Nunito-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('../assets/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  src: url('../assets/fonts/Sora-VariableFont_wght.ttf') format('truetype');
 }
 
 .br_c {
   border: 1px solid red;
+}
+.br_d {
+  border: 1px solid rgb(6, 42, 172);
 }

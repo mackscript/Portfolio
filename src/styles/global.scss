@@ -20,7 +20,14 @@ html {
 @import './header';
 @import './scrolltext';
 @import './cursor';
+@import './navbar';
 
+::-webkit-scrollbar {
+  display: none;
+}
+h1 {
+  margin: 0;
+}
 // common css
 .darkMode {
   height: 100vh;
@@ -43,6 +50,7 @@ html {
   width: 90%;
   margin: auto;
   display: flex;
+  flex-direction: column;
 }
 .bg-red {
   padding: 20rem;

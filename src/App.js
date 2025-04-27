@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './styles/global.scss';
 import LoadingScreen from './components/LoadingScreen';
-import Header from './pages/Home';
-import Home from './pages/Home';
 import CustomCursor from './components/CustomCursor';
+import Navbar from './components/Navbar';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme } from './reducer/themeSlicer';
+import HeroSection from './view/HeroSection';
 
 function App() {
+  const dispatch = useDispatch();
+  const { darkMode } = useSelector((state) => state.theme);
   const [display, setDisplay] = useState(false);
 
   function showContent() {
@@ -13,6 +17,12 @@ function App() {
   }
 
   useEffect(() => {
+    const isDarkMode = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+
+    dispatch(toggleTheme(isDarkMode));
+
     let scrolling = false;
     let targetScroll = window.scrollY;
 
@@ -51,8 +61,17 @@ function App() {
   return (
     <div className='darkMode'>
       <CustomCursor />
-      <LoadingScreen showContent={() => showContent()} />
-      {display ? <div className='container br_c'></div> : null}
+      {/* <LoadingScreen showContent={() => showContent()} /> */}
+      {!display ? (
+        <div>
+          <Navbar />
+          <HeroSection />
+          <div
+            className='h-100vh'
+            style={{ height: '100vh', backgroundColor: '#000' }}
+          ></div>
+        </div>
+      ) : null}
     </div>
   );
 }

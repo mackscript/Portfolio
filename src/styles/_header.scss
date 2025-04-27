@@ -1,0 +1,45 @@
+.hero_section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+
+  &_title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(184, 183, 183, 0.8);
+    width: 60%;
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Sora';
+    h1 {
+      font-size: 8rem;
+      line-height: 1;
+    }
+  }
+}
+.word {
+  overflow: hidden !important;
+}
+
+#rotatingText {
+  animation-name: rotate-circle;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotate-circle {
+  to {
+    transform: rotate(1turn);
+  }
+}

@@ -11,7 +11,6 @@ const CustomCursor = () => {
     };
 
     const handleMouseEnter = (e) => {
-      // Null check and optional chaining to prevent errors
       if (e?.target) {
         const isPointerElement =
           e.target.classList?.contains('pointer') ||
@@ -24,7 +23,6 @@ const CustomCursor = () => {
     };
 
     const handleMouseLeave = (e) => {
-      // Null check and optional chaining to prevent errors
       if (e?.target) {
         const isPointerElement =
           e.target.classList?.contains('pointer') ||
@@ -36,7 +34,6 @@ const CustomCursor = () => {
       }
     };
 
-    // Use event delegation on the document
     document.addEventListener('mouseenter', handleMouseEnter, true);
     document.addEventListener('mouseleave', handleMouseLeave, true);
 
