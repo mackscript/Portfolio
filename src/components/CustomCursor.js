@@ -15,7 +15,6 @@ const CustomCursor = () => {
         const isPointerElement =
           e.target.classList?.contains('pointer') ||
           e.target.closest?.('.pointer');
-
         if (isPointerElement) {
           setIsHoveringLink(true);
         }
@@ -56,9 +55,7 @@ const CustomCursor = () => {
 
       animationFrameId = requestAnimationFrame(animateFollower);
     };
-
     animateFollower();
-
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
@@ -67,13 +64,35 @@ const CustomCursor = () => {
   return (
     <div className='fixed z-50 pointer-events-none'>
       <div
-        className={`cursor-dot ${isHoveringLink ? 'cursor-dot-large' : ''}`}
+        className={`cursor-dot   ${isHoveringLink ? 'cursor-dot-large' : ''}`}
         style={{
           transform: `translate(-50%, -50%) translate(${position.x}px, ${position.y}px)`,
         }}
-      />
+      >
+        {isHoveringLink ? (
+          <svg
+            className='cursor_arrow'
+            width='30'
+            height='30'
+            viewBox='0 0 10 14'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M1 5L5 1M5 1L9 5M5 1V13'
+              stroke='#28303F'
+              slpbbvcxz
+              IOPtroke-width='1.5'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+            />
+          </svg>
+        ) : null}
+      </div>
       <div
-        className='cursor-follower'
+        className={` ${
+          isHoveringLink ? 'cursor-follower-large' : ''
+        } cursor-follower`}
         style={{
           transform: `translate(-50%, -50%) translate(${followerPosition.x}px, ${followerPosition.y}px)`,
         }}

@@ -12,31 +12,40 @@
 
 /* Primary cursor (small dot) */
 .cursor-dot {
-  backdrop-filter: invert(1);
+  // backdrop-filter: invert(1);
   position: fixed;
   width: 6px;
+  z-index: 99999999;
   height: 6px;
   border-radius: 50%;
-  background-color: #fdfdfd;
+  background-color: #8665e8;
   transform: translate(-50%, -50%);
   pointer-events: none;
   transition: width 0.3s, height 0.3s;
 }
 
 .cursor-dot-large {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  transition: width 0.3s, height 0.3s;
   width: 50px;
   height: 50px;
-  background-color: rgba(255, 255, 255, 0.579);
+  background-color: #8665e8;
 }
 
+.cursor_arrow {
+  transform: rotate(60deg);
+}
 .cursor-follower {
   position: fixed;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.463);
   transform: translate(-50%, -50%);
   pointer-events: none;
+  z-index: 1000000000000;
   &::before,
   &::after {
     content: '';
@@ -63,4 +72,14 @@
     transform: scale(1.4);
     opacity: 0.5;
   }
+}
+.cursor-follower-large {
+  width: 70px;
+  height: 70px;
+}
+
+.tir {
+  margin-left: 20;
+  width: 300;
+  height: 300;
 }

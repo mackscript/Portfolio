@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from './reducer/themeSlicer';
 import HeroSection from './view/HeroSection';
+import About from './view/About';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ function App() {
 
     const handleScroll = (e) => {
       e.preventDefault();
-      targetScroll += e.deltaY * 1.2;
+      targetScroll += e.deltaY * 0.8;
       targetScroll = Math.max(
         0,
         Math.min(document.body.scrollHeight - window.innerHeight, targetScroll)
@@ -63,10 +64,11 @@ function App() {
   return (
     <div className='darkMode'>
       <CustomCursor />
-      <LoadingScreen showContent={() => showContent()} />
-      {display ? (
+      {/* <LoadingScreen showContent={() => showContent()} /> */}
+      {!display ? (
         <div className='xxxx'>
           <HeroSection />
+          {/* <About /> */}
         </div>
       ) : null}
     </div>
