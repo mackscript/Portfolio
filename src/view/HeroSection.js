@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import SplitType from 'split-type';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link, Element } from 'react-scroll';
 
 gsap.registerPlugin(ScrollTrigger);
 const HeroSection = () => {
+  const arrowRef = useRef(null);
+
   const [text, setText] = useState(
     'PORTFOLIO | FRONT-END DEVELOPER | PORTFOLIO | FRONT-END | 2025 |'
   );
+  const handleScroll = () => {
+    window.scrollBy({ top: 200, behavior: 'smooth' });
+  };
   useEffect(() => {
     const tl = gsap.timeline();
 
@@ -130,11 +136,27 @@ const HeroSection = () => {
         opacity: 1,
         duration: 1,
         ease: 'power2.out',
+      })
+      .to(
+        '.scroll_down',
+        {
+          opacity: 1,
+          ease: 'power1.inOut',
+          duration: 0.8, // Speed
+        },
+        '-=1.9'
+      )
+      .to(arrowRef.current, {
+        y: 10, // Move 10px down
+        repeat: -1, // Infinite loop
+        yoyo: true, // Aane jaane wala effect
+        ease: 'power1.inOut',
+        duration: 0.8, // Speed
       });
   }, []);
 
   return (
-    <div className='xxContainer'>
+    <div className='container'>
       <div className='line_container'>
         <div className='linex'>
           <div className='line_one '>
@@ -147,27 +169,51 @@ const HeroSection = () => {
         <div className='linex'>
           <div className='line_one cap'>
             <p className='third'>Crafting</p>
-            <p className='fourth'>Web &</p>
+            <p className='fourth'>Seamless</p>
           </div>
           <div className='second_line line'></div>
         </div>
 
         <div className='linex'>
-          <div className='line_middle  cap '>
-            <p className='fifth pointer'>Mobile Apps</p>
+          <div className='line_middle cap'>
+            <p className='fifth pointer'>Web & Mobile</p>
           </div>
           <div className='third_line line'></div>
         </div>
 
         <div className='linex'>
           <div className='line_one cap'>
-            <p className='sixth  '>Frontend</p>
-            <p className='seven '>Developer</p>
+            <p className='sixth'>Experiences</p>
+            <p className='seven'>with Code</p>
           </div>
           <div className='forth_line line'></div>
         </div>
+        <div className='scroll_down'>
+          <div onClick={handleScroll} className='scroll_container pointer'>
+            <svg
+              ref={arrowRef}
+              className='cursor_arrow'
+              width='30'
+              height='30'
+              viewBox='0 0 10 14'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M1 5L5 1M5 1L9 5M5 1V13'
+                stroke='#ffff'
+                slpbbvcxz
+                IOPtroke-width='1.5'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              />
+            </svg>
+            <p className='scroll'>Scroll to explore</p>
+          </div>
+        </div>
       </div>
-      <div className='container'>
+
+      {/* <div className='container'>
         <div id='containerSpin'>
           <svg
             id='spinText'
@@ -196,7 +242,7 @@ const HeroSection = () => {
             </g>
           </svg>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

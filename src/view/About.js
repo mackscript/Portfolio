@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import React, { useEffect, useRef } from 'react';
 import SplitType from 'split-type';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Element } from 'react-scroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +33,7 @@ const About = () => {
   }, []);
 
   return (
-    <div>
+    <div id='aboutSection' name='section1'>
       <div ref={aboutRef} className='about_contianer container'>
         <p>
           I'm <span className='pointer'>Ripon Haldar</span>, a passionate

@@ -18,49 +18,49 @@ function App() {
     setDisplay(true);
   }
 
-  useEffect(() => {
-    const isDarkMode = window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches;
+  // useEffect(() => {
+  //   const isDarkMode = window.matchMedia(
+  //     '(prefers-color-scheme: dark)'
+  //   ).matches;
 
-    console.log('darkMode :>> ', darkMode);
+  //   console.log('darkMode :>> ', darkMode);
 
-    dispatch(toggleTheme(isDarkMode));
+  //   dispatch(toggleTheme(isDarkMode));
 
-    let scrolling = false;
-    let targetScroll = window.scrollY;
+  //   let scrolling = false;
+  //   let targetScroll = window.scrollY;
 
-    const smoothScroll = () => {
-      if (!scrolling) return;
-      const currentScroll = window.scrollY;
-      const diff = targetScroll - currentScroll;
-      window.scrollTo(0, currentScroll + diff * 0.1);
-      if (Math.abs(diff) > 1) {
-        requestAnimationFrame(smoothScroll);
-      } else {
-        scrolling = false;
-      }
-    };
+  //   const smoothScroll = () => {
+  //     if (!scrolling) return;
+  //     const currentScroll = window.scrollY;
+  //     const diff = targetScroll - currentScroll;
+  //     window.scrollTo(0, currentScroll + diff * 0.1);
+  //     if (Math.abs(diff) > 1) {
+  //       requestAnimationFrame(smoothScroll);
+  //     } else {
+  //       scrolling = false;
+  //     }
+  //   };
 
-    const handleScroll = (e) => {
-      e.preventDefault();
-      targetScroll += e.deltaY * 0.8;
-      targetScroll = Math.max(
-        0,
-        Math.min(document.body.scrollHeight - window.innerHeight, targetScroll)
-      );
-      if (!scrolling) {
-        scrolling = true;
-        requestAnimationFrame(smoothScroll);
-      }
-    };
+  //   const handleScroll = (e) => {
+  //     e.preventDefault();
+  //     targetScroll += e.deltaY * 0.8;
+  //     targetScroll = Math.max(
+  //       0,
+  //       Math.min(document.body.scrollHeight - window.innerHeight, targetScroll)
+  //     );
+  //     if (!scrolling) {
+  //       scrolling = true;
+  //       requestAnimationFrame(smoothScroll);
+  //     }
+  //   };
 
-    window.addEventListener('wheel', handleScroll, { passive: false });
+  //   window.addEventListener('wheel', handleScroll, { passive: false });
 
-    return () => {
-      window.removeEventListener('wheel', handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('wheel', handleScroll);
+  //   };
+  // }, []);
 
   return (
     <div className='darkMode'>
