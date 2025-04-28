@@ -27,7 +27,6 @@ const HeroSection = () => {
 
     tl.from('.first span', {
       y: '100%',
-      delay: 0.4,
       opacity: 0,
       duration: 0.5,
       ease: 'power2.out',
@@ -146,7 +145,7 @@ const HeroSection = () => {
         </div>
 
         <div className='linex'>
-          <div className='line_one'>
+          <div className='line_one cap'>
             <p className='third'>Crafting</p>
             <p className='fourth'>Web &</p>
           </div>
@@ -154,16 +153,16 @@ const HeroSection = () => {
         </div>
 
         <div className='linex'>
-          <div className='line_middle '>
+          <div className='line_middle  cap '>
             <p className='fifth pointer'>Mobile Apps</p>
           </div>
           <div className='third_line line'></div>
         </div>
 
         <div className='linex'>
-          <div className='line_one '>
-            <p className='sixth'>Frontend</p>
-            <p className='seven'>Developer</p>
+          <div className='line_one cap'>
+            <p className='sixth  '>Frontend</p>
+            <p className='seven '>Developer</p>
           </div>
           <div className='forth_line line'></div>
         </div>

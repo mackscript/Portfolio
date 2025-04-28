@@ -2,6 +2,7 @@
 @import './media';
 @import './loadingScreen';
 @import './header';
+@import './about';
 @import './scrolltext';
 @import './cursor';
 @import './navbar';
@@ -16,9 +17,9 @@ html {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  // user-select: none;
-  // outline: none;
-  // cursor: none;
+  user-select: none;
+  outline: none;
+  cursor: none;
   background-color: #060505;
 }
 

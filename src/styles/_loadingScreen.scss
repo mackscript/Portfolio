@@ -54,6 +54,9 @@ main {
       transform: translateY(-15px);
 
       font-weight: lighter;
+      @include tab {
+        font-size: 100px;
+      }
       // text-shadow: 2px 2px 22px rgba(255, 0, 0, 0.7);
     }
     .terminal {

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from './reducer/themeSlicer';
 import HeroSection from './view/HeroSection';
 import About from './view/About';
+import Skills from './view/Skills';
 
 function App() {
   const dispatch = useDispatch();
@@ -64,11 +65,12 @@ function App() {
   return (
     <div className='darkMode'>
       <CustomCursor />
-      {/* <LoadingScreen showContent={() => showContent()} /> */}
-      {!display ? (
+      <LoadingScreen showContent={() => showContent()} />
+      {display ? (
         <div className='xxxx'>
           <HeroSection />
-          {/* <About /> */}
+          <About />
+          <Skills />
         </div>
       ) : null}
     </div>

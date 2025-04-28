@@ -5,10 +5,9 @@
     margin-top: 3rem;
     // border-bottom: 1px solid #212529;
   }
-
   .line {
     width: 100%;
-    height: 0.9px;
+    height: 1px;
     background-color: #212529;
   }
   .line_one {
@@ -17,12 +16,21 @@
     display: flex;
     justify-content: space-between;
     p {
-      text-transform: uppercase;
-      font-family: 'Oswald';
-      line-height: 1;
+      // text-transform: lowercase;
+      font-family: 'ppi';
+      line-height: -1;
       margin: 0;
-      font-size: 7.5rem;
+      font-size: 6rem;
       color: #adb5bd;
+      @include laptop {
+        font-size: 4rem;
+      }
+      @include tab {
+        font-size: 3rem;
+      }
+      @include mobile {
+        font-size: 2.2rem;
+      }
     }
   }
   .line_middle {
@@ -31,16 +39,35 @@
     display: flex;
     justify-content: center;
     p {
-      text-transform: uppercase;
-      font-family: 'Oswald';
+      // text-transform: ;
+      font-family: 'ppi';
       line-height: 1;
       margin: 0;
-      font-size: 7.5rem;
+      font-size: 4rem;
       color: #adb5bd;
+      @include laptop {
+        font-size: 4rem;
+      }
+      @include tab {
+        font-size: 3rem;
+      }
+      @include mobile {
+        font-size: 2.2rem;
+      }
     }
   }
 }
 
+.cap {
+  p {
+    font-family: 'ppr';
+    text-transform: uppercase;
+    margin: -50;
+    padding: 0;
+    line-height: 1;
+    font-size: 6rem;
+  }
+}
 #spinText text {
   font-size: 28px;
   fill: white;
