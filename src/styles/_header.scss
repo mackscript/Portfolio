@@ -1,45 +1,42 @@
-.hero_section {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #000;
-  overflow: hidden;
+.line_container {
+  margin-top: 2rem;
+  .linex {
+    overflow: hidden;
+    margin-top: 3rem;
+    // border-bottom: 1px solid #212529;
+  }
 
-  &_title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgba(184, 183, 183, 0.8);
-    width: 60%;
-    margin: 0;
-    font-weight: bold;
-    text-align: center;
-    z-index: 1;
+  .line {
+    width: 100%;
+    height: 0.9px;
+    background-color: #212529;
+  }
+  .line_one {
+    width: 90%;
+    margin: auto;
     display: flex;
-    flex-direction: column;
-    font-family: 'Sora';
-    h1 {
-      font-size: 8rem;
+    justify-content: space-between;
+    p {
+      text-transform: uppercase;
+      font-family: 'Oswald';
       line-height: 1;
+      margin: 0;
+      font-size: 7rem;
+      color: #495057;
     }
   }
-}
-.word {
-  overflow: hidden !important;
-}
-
-#rotatingText {
-  animation-name: rotate-circle;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes rotate-circle {
-  to {
-    transform: rotate(1turn);
+  .line_middle {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    p {
+      text-transform: uppercase;
+      font-family: 'Oswald';
+      line-height: 1;
+      margin: 0;
+      font-size: 7rem;
+      color: #495057;
+    }
   }
 }

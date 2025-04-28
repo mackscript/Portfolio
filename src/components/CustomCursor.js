@@ -36,7 +36,6 @@ const CustomCursor = () => {
 
     document.addEventListener('mouseenter', handleMouseEnter, true);
     document.addEventListener('mouseleave', handleMouseLeave, true);
-
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
@@ -47,18 +46,21 @@ const CustomCursor = () => {
   }, []);
 
   useEffect(() => {
+    let animationFrameId;
+
     const animateFollower = () => {
-      // Create a smoother interpolation
       setFollowerPosition((prev) => ({
-        x: prev.x + (position.x - prev.x) * 0.2,
-        y: prev.y + (position.y - prev.y) * 0.2,
+        x: prev.x + (position.x - prev.x) * 0.1,
+        y: prev.y + (position.y - prev.y) * 0.1,
       }));
+
+      animationFrameId = requestAnimationFrame(animateFollower);
     };
 
-    const animationFrame = requestAnimationFrame(animateFollower);
+    animateFollower();
 
     return () => {
-      cancelAnimationFrame(animationFrame);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [position]);
 
@@ -67,15 +69,13 @@ const CustomCursor = () => {
       <div
         className={`cursor-dot ${isHoveringLink ? 'cursor-dot-large' : ''}`}
         style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
+          transform: `translate(-50%, -50%) translate(${position.x}px, ${position.y}px)`,
         }}
       />
       <div
-        className={`cursor-follower  `}
+        className='cursor-follower'
         style={{
-          left: `${followerPosition.x}px`,
-          top: `${followerPosition.y}px`,
+          transform: `translate(-50%, -50%) translate(${followerPosition.x}px, ${followerPosition.y}px)`,
         }}
       />
     </div>

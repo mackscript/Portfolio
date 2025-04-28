@@ -1,7 +1,7 @@
 main {
   height: 100vh;
   width: 100vw;
-  background-color: rgb(11, 10, 10);
+  background-color: #0b0a0a;
   overflow: hidden;
   position: relative;
 
@@ -55,6 +55,16 @@ main {
 
       font-weight: lighter;
       // text-shadow: 2px 2px 22px rgba(255, 0, 0, 0.7);
+    }
+    .terminal {
+      color: #fff;
+      top: 70%;
+      z-index: 213123;
+      left: 10%;
+      width: 40%;
+      p {
+        color: #7456c3;
+      }
     }
   }
 }

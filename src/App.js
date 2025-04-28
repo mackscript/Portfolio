@@ -21,6 +21,8 @@ function App() {
       '(prefers-color-scheme: dark)'
     ).matches;
 
+    console.log('darkMode :>> ', darkMode);
+
     dispatch(toggleTheme(isDarkMode));
 
     let scrolling = false;
@@ -40,7 +42,7 @@ function App() {
 
     const handleScroll = (e) => {
       e.preventDefault();
-      targetScroll += e.deltaY * 1.2; // Adjust
+      targetScroll += e.deltaY * 1.2;
       targetScroll = Math.max(
         0,
         Math.min(document.body.scrollHeight - window.innerHeight, targetScroll)
@@ -61,15 +63,10 @@ function App() {
   return (
     <div className='darkMode'>
       <CustomCursor />
-      {/* <LoadingScreen showContent={() => showContent()} /> */}
-      {!display ? (
-        <div>
-          <Navbar />
+      <LoadingScreen showContent={() => showContent()} />
+      {display ? (
+        <div className='xxxx'>
           <HeroSection />
-          <div
-            className='h-100vh'
-            style={{ height: '100vh', backgroundColor: '#000' }}
-          ></div>
         </div>
       ) : null}
     </div>
