@@ -8,6 +8,7 @@ import { toggleTheme } from './reducer/themeSlicer';
 import HeroSection from './view/HeroSection';
 import About from './view/About';
 import Skills from './view/Skills';
+import TextScroll from './view/TextScroll';
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function App() {
       {display ? (
         <div className='xxxx'>
           <HeroSection />
+          <TextScroll />
           <About />
           <Skills />
         </div>
