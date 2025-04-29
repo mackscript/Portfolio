@@ -1,8 +1,11 @@
 .line_container {
+  position: relative;
   height: 100vh;
+  width: 100%;
   background-color: #040404;
   border-radius: 20px;
-  margin-top: 2rem;
+  overflow: hidden;
+
   .linex {
     overflow: hidden;
     margin-top: 4rem;
