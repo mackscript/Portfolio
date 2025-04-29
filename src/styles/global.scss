@@ -3,6 +3,7 @@
 @import './loadingScreen';
 @import './header';
 @import './about';
+@import './skills';
 @import './scrolltext';
 @import './cursor';
 @import './navbar';
@@ -66,6 +67,18 @@ h1 {
   margin: auto;
   display: flex;
   flex-direction: column;
+}
+.min_container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  @include tab {
+    width: 90%;
+  }
+  @include mobile {
+    width: 95%;
+  }
 }
 .bg-red {
   padding: 20rem;

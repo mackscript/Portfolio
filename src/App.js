@@ -65,14 +65,15 @@ function App() {
 
   return (
     <div className='darkMode'>
-      <CustomCursor />
-      <LoadingScreen showContent={() => showContent()} />
-      {display ? (
+      {/* <CustomCursor /> */}
+      {/* <LoadingScreen showContent={() => showContent()} /> */}
+      {!display ? (
         <div className='xxxx'>
           <HeroSection />
           <TextScroll />
           <About />
           <Skills />
+          <div className='xxxx' style={{ height: '200vh' }}></div>
         </div>
       ) : null}
     </div>

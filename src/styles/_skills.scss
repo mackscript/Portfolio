@@ -1,0 +1,33 @@
+.skills_container {
+  margin-top: 8rem;
+  .skills {
+    &_grid {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      @include tab {
+        grid-template-columns: 1fr;
+      }
+
+      &_item {
+        padding: 1.2rem;
+      }
+    }
+
+    &_title {
+      display: flex;
+      align-items: center;
+      svg {
+        margin-bottom: 0.5rem;
+        transform: rotate(145deg);
+      }
+      p {
+        margin-right: 0.4rem;
+        font-family: 'ppb';
+        font-size: 2rem;
+        color: #fff;
+      }
+    }
+  }
+}
