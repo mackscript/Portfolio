@@ -1,250 +1,286 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import SplitType from 'split-type';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Link, Element } from 'react-scroll';
 
-gsap.registerPlugin(ScrollTrigger);
-const HeroSection = () => {
-  const arrowRef = useRef(null);
+const ModernHero = () => {
+  const canvasRef = useRef(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const animationRef = useRef();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const particlesRef = useRef([]);
 
-  const [text, setText] = useState(
-    'PORTFOLIO | FRONT-END DEVELOPER | PORTFOLIO | FRONT-END | 2025 |'
-  );
-  const handleScroll = () => {
-    window.scrollBy({ top: 200, behavior: 'smooth' });
-  };
+  const codeIcons = [
+    '<>',
+    '{}',
+    '[]',
+    '()',
+    '/>',
+    '&&',
+    '||',
+    '++',
+    '--',
+    '!=',
+    '==',
+    '<=',
+    '>=',
+    '::',
+  ];
+
   useEffect(() => {
-    const tl = gsap.timeline();
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
 
-    const splitClasses = [
-      '.first',
-      '.second',
-      '.third',
-      '.fourth',
-      '.fifth',
-      '.sixth',
-      '.seven',
-    ];
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
 
-    splitClasses.forEach((cls) => {
-      new SplitType(cls, { types: 'chars', tagName: 'span' });
-    });
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    tl.from('.first span', {
-      y: '100%',
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.out',
-      stagger: 0.05,
-    })
-      .fromTo(
-        '.first_line',
-        { width: '0%' },
-        { width: '100%', duration: 1 },
-        '-=0.4'
-      )
+    const initializeElements = () => {
+      particlesRef.current = [];
 
-      .from(
-        '.second span',
-        {
-          y: '100%',
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0.05,
-        },
-        '-=0.8'
-      )
-      .fromTo(
-        '.second_line',
-        { scaleX: 0, transformOrigin: 'right center' },
-        { scaleX: 1, duration: 1 },
-        '-=0.8'
-      )
+      // Small floating code elements
+      for (let i = 0; i < 30; i++) {
+        particlesRef.current.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 20 + 15,
+          speedX: (Math.random() - 0.5) * 0.4,
+          speedY: (Math.random() - 0.5) * 0.4,
+          opacity: Math.random() * 0.5 + 0.2,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 1.5,
+          icon: codeIcons[Math.floor(Math.random() * codeIcons.length)],
+          parallaxFactor: Math.random() * 0.02 + 0.01,
+          glowIntensity: Math.random() * 0.8 + 0.4,
+          pulseSpeed: Math.random() * 0.03 + 0.02,
+          pulseOffset: Math.random() * Math.PI * 2,
+        });
+      }
 
-      .from(
-        '.third span',
-        {
-          y: '100%',
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0.05,
-        },
-        '-=1'
-      )
-      .from(
-        '.fourth span',
-        {
-          y: '100%',
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0.05,
-        },
-        '-=0.8'
-      )
-      .fromTo(
-        '.third_line',
-        { width: '0%' },
-        { width: '100%', duration: 1 },
-        '-=1.2'
-      )
+      // Large background elements
+      for (let i = 0; i < 10; i++) {
+        particlesRef.current.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 100 + 50,
+          speedX: (Math.random() - 0.5) * 0.2,
+          speedY: (Math.random() - 0.5) * 0.2,
+          opacity: Math.random() * 0.1 + 0.03,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 0.8,
+          icon: codeIcons[Math.floor(Math.random() * codeIcons.length)],
+          parallaxFactor: Math.random() * 0.025 + 0.01,
+          isLarge: true,
+          glowIntensity: Math.random() * 0.5 + 0.3,
+          pulseSpeed: Math.random() * 0.02 + 0.01,
+          pulseOffset: Math.random() * Math.PI * 2,
+        });
+      }
+    };
 
-      .from(
-        '.fifth span',
-        {
-          y: '100%',
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0.05,
-        },
-        '-=1'
-      )
-      .fromTo(
-        '.forth_line',
-        { scaleX: 0, transformOrigin: 'right center' },
-        { scaleX: 1, duration: 1 },
-        '-=1.2'
-      )
+    initializeElements();
 
-      .from(
-        '.sixth span',
-        {
-          y: '100%',
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0.05,
-        },
-        '-=0.8'
-      )
-      .from(
-        '.seven span',
-        {
-          y: '100%',
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0.05,
-        },
-        '-=0.8'
-      )
-      .to('#containerSpin', {
-        opacity: 1,
-        duration: 1,
-        ease: 'power2.out',
-      })
-      .to(
-        '.scroll_down',
-        {
-          opacity: 1,
-          ease: 'power1.inOut',
-          duration: 0.8, // Speed
-        },
-        '-=1.9'
-      )
-      .to(arrowRef.current, {
-        y: 10, // Move 10px down
-        repeat: -1, // Infinite loop
-        yoyo: true, // Aane jaane wala effect
-        ease: 'power1.inOut',
-        duration: 0.8, // Speed
+    const animate = (time) => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particlesRef.current.forEach((particle) => {
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+        particle.rotation += particle.rotationSpeed;
+
+        const pulse =
+          Math.sin(time * particle.pulseSpeed + particle.pulseOffset) * 0.4 +
+          0.6;
+
+        const mouseInfluence = particle.isLarge ? 100 : 80;
+        const dx = mouseRef.current.x - particle.x;
+        const dy = mouseRef.current.y - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouseInfluence) {
+          const force = (mouseInfluence - distance) / mouseInfluence;
+          particle.x -= dx * particle.parallaxFactor * force * 2;
+          particle.y -= dy * particle.parallaxFactor * force * 2;
+        }
+
+        if (particle.x < -150) particle.x = canvas.width + 150;
+        if (particle.x > canvas.width + 150) particle.x = -150;
+        if (particle.y < -150) particle.y = canvas.height + 150;
+        if (particle.y > canvas.height + 150) particle.y = -150;
+
+        ctx.save();
+        ctx.translate(particle.x, particle.y);
+        ctx.rotate((particle.rotation * Math.PI) / 180);
+
+        const finalOpacity = particle.opacity * pulse;
+        ctx.globalAlpha = finalOpacity;
+
+        const glowColor = particle.isLarge ? '#fff' : '#a4161a';
+        ctx.shadowColor = glowColor;
+        ctx.shadowBlur = particle.glowIntensity * 30 * pulse;
+
+        ctx.font = `${particle.size}px 'Fira Code', 'Consolas', monospace`;
+        ctx.fillStyle = glowColor;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        ctx.fillText(particle.icon, 0, 0);
+        ctx.restore();
       });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    const handleMouseMove = (e) => {
+      mouseRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+      };
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    setTimeout(() => setIsLoaded(true), 100);
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
   }, []);
 
+  const handleButtonClick = (e) => {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      left: ${x}px;
+      top: ${y}px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s ease-out;
+      pointer-events: none;
+    `;
+
+    button.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  };
+
+  const FloatingParticles = () => {
+    const particles = [];
+    for (let i = 0; i < 20; i++) {
+      particles.push(
+        <div
+          key={i}
+          className='particle'
+          style={{
+            left: Math.random() * 100 + '%',
+            animationDelay: Math.random() * 10 + 's',
+            animationDuration: Math.random() * 10 + 10 + 's',
+          }}
+        />
+      );
+    }
+    return <div className='particles-container'>{particles}</div>;
+  };
+
   return (
-    <div className='container'>
-      <div className='line_container'>
-        <div className='linex'>
-          <div className='line_one '>
-            <p className='first pointer'>Ripon</p>
-            <p className='second pointer'>Haldar</p>
+    <>
+      <div className='hero-container'>
+        {/* Animated Background */}
+        <div className='animated-bg'>
+          <div className='grid-overlay'></div>
+          <div className='floating-shapes'>
+            <div className='shape'></div>
+            <div className='shape'></div>
+            <div className='shape'></div>
+            <div className='shape'></div>
+            <div className='shape'></div>
           </div>
-          <div className='first_line line'></div>
         </div>
 
-        <div className='linex'>
-          <div className='line_one cap'>
-            <p className='third'>Crafting</p>
-            <p className='fourth'>Seamless</p>
+        {/* Floating Canvas */}
+        <canvas ref={canvasRef} className='floating-canvas' />
+
+        {/* Gradient Overlays */}
+        <div className='gradient-overlay'></div>
+        <div className='gradient-sides'></div>
+
+        {/* Floating Particles */}
+        <FloatingParticles />
+
+        {/* Main Content */}
+        <div className='main-content'>
+          <div className='content-wrapper'>
+            {/* Name */}
+            <div className='name-container'>
+              <h1 className='main-name'>RIPON</h1>
+              <h1 className='last-name'>HALDAR</h1>
+            </div>
+
+            {/* Title */}
+            <div className='title-container'>
+              <p className='title'>
+                <span className='bracket'>&lt;</span>
+                <span className='title-text'>Frontend Developer</span>
+                <span className='bracket'>/&gt;</span>
+              </p>
+            </div>
+
+            {/* Description */}
+            <div className='description-container'>
+              <p className='description'>
+                Crafting immersive digital experiences with modern web
+                technologies.
+                <span className='code-snippet'>
+                  console.log("Let's build something amazing!");
+                </span>
+              </p>
+            </div>
+
+            {/* Buttons */}
+            <div className='buttons-container'>
+              <button className='btn btn-primary' onClick={handleButtonClick}>
+                <span className='btn-icon'>{'{}'}</span>
+                <span className='btn-text'>View My Work</span>
+              </button>
+              <button className='btn btn-secondary' onClick={handleButtonClick}>
+                <span className='btn-icon'>&lt;/&gt;</span>
+                <span className='btn-text'>Get In Touch</span>
+              </button>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div className='scroll-indicator'>
+              <span className='scroll-text'>scroll down</span>
+              <div className='scroll-mouse'>
+                <div className='scroll-wheel'></div>
+              </div>
+            </div>
           </div>
-          <div className='second_line line'></div>
         </div>
 
-        <div className='linex'>
-          <div className='line_middle cap'>
-            <p className='fifth pointer'>Web & Mobile</p>
-          </div>
-          <div className='third_line line'></div>
-        </div>
-
-        <div className='linex'>
-          <div className='line_one cap'>
-            <p className='sixth'>Experiences</p>
-            <p className='seven'>with Code</p>
-          </div>
-          <div className='forth_line line'></div>
-        </div>
-        <div className='scroll_down'>
-          <div onClick={handleScroll} className='scroll_container pointer'>
-            <svg
-              ref={arrowRef}
-              className='cursor_arrow'
-              width='30'
-              height='30'
-              viewBox='0 0 10 14'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M1 5L5 1M5 1L9 5M5 1V13'
-                stroke='#ffff'
-                slpbbvcxz
-                IOPtroke-width='1.5'
-                stroke-linecap='round'
-                stroke-linejoin='round'
-              />
-            </svg>
-            <p className='scroll'>Scroll to explore</p>
-          </div>
-        </div>
+        {/* Floating Action Button */}
+        <button className='fab'>&lt;&gt;</button>
       </div>
-
-      {/* <div className='container'>
-        <div id='containerSpin'>
-          <svg
-            id='spinText'
-            viewBox='0 0 400 400'
-            xmlns='http://www.w3.org/2000/svg'
-            width='200'
-            height='200'
-          >
-            <defs>
-              <path
-                id='somePath'
-                fill='none'
-                stroke='#fff'
-                d='M200,50c82.8,0,150,67.2,150,150s-67.2,150-150,150S50,282.8,50,200
-	S117.2,50,200,50z'
-              />
-              <clipPath id='theClipPath'>
-                <circle id='masker' r='200' fill='purple' cx='200' cy='200' />
-              </clipPath>
-            </defs>
-            <g id='clipPathReveal' clip-path='url(#theClipPath)'>
-              <circle r='0' fill='#42a6e0' cx='200' cy='200' />
-              <text>
-                <textPath href='#somePath'>{text}</textPath>
-              </text>
-            </g>
-          </svg>
-        </div>
-      </div> */}
-    </div>
+    </>
   );
 };
 
-export default HeroSection;
+export default ModernHero;

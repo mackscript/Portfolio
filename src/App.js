@@ -65,7 +65,7 @@ function App() {
 
   return (
     <div className='darkMode'>
-      {/* <CustomCursor /> */}
+      <CustomCursor />
       {/* <LoadingScreen showContent={() => showContent()} /> */}
       {!display ? (
         <div className='xxxx'>
