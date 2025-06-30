@@ -2,13 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import SplitType from 'split-type';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Element } from 'react-scroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Skills = () => {
   const titleRef = useRef();
   const svgRef = useRef();
+  const skillsRef = useRef();
+  const skillCardsRef = useRef([]);
+  const skillTagsRef = useRef([]);
 
   useEffect(() => {
     const split = new SplitType(titleRef.current, { types: 'chars' });
@@ -32,6 +34,7 @@ const Skills = () => {
         }
       }, 30);
     };
+
     ScrollTrigger.create({
       trigger: titleRef.current,
       start: 'top 80%',
@@ -43,43 +46,84 @@ const Skills = () => {
           }, i * 100);
         });
 
-        // Animate SVG
         gsap.to(svgRef.current, {
           opacity: 1,
           duration: 1,
-          delay: finalText.length * 0.1, // after all letters appear
+          delay: finalText.length * 0.1,
         });
       },
     });
   }, []);
-  const skillsRef = useRef();
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
+    // Animate skill cards
     gsap.fromTo(
-      skillsRef.current.children,
-      { opacity: 0, y: 50 },
+      skillCardsRef.current,
+      {
+        opacity: 0,
+        y: 50,
+        scale: 0.9,
+        rotateX: 45,
+      },
       {
         opacity: 1,
         y: 0,
-        stagger: 0.3,
+        scale: 1,
+        rotateX: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: skillsRef.current,
           start: 'top 80%',
           end: 'bottom top',
-          scrub: true,
-          markers: false,
+        },
+      }
+    );
+
+    // Animate skill tags with stagger
+    gsap.fromTo(
+      skillTagsRef.current,
+      {
+        opacity: 0,
+        scale: 0,
+        y: 20,
+        rotation: 5,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        rotation: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: skillsRef.current,
+          start: 'top 70%',
+          end: 'bottom top',
         },
       }
     );
   }, []);
 
+  const addToSkillCardsRef = (el) => {
+    if (el && !skillCardsRef.current.includes(el)) {
+      skillCardsRef.current.push(el);
+    }
+  };
+
+  const addToSkillTagsRef = (el) => {
+    if (el && !skillTagsRef.current.includes(el)) {
+      skillTagsRef.current.push(el);
+    }
+  };
+
   return (
     <div className='skills_container'>
       <div className='skills min_container'>
         <div className='skills_grid'>
-          <div className='skills_grid_item '>
+          <div className='skills_grid_item'>
             <div className='skills_title'>
               <p ref={titleRef}>SKILLS</p>
               <svg
@@ -94,54 +138,100 @@ const Skills = () => {
                 <path
                   d='M1 5L5 1M5 1L9 5M5 1V13'
                   stroke='#ffff'
-                  slpbbvcxz
-                  IOPtroke-width='1.5'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 />
               </svg>
             </div>
           </div>
-          <div className='skills_grid_item br_d'>
-            <section id='skills' ref={skillsRef} style={styles.skillsSection}>
-              <h2 style={styles.sectionTitle}>My Skills</h2>
-              <div style={styles.skillsContainer}>
-                <div className='skillCard' style={styles.card}>
-                  <h3>Front-End</h3>
-                  <ul>
-                    <li>React.js</li>
-                    <li>React Native</li>
-                    <li>JavaScript</li>
-                    <li>HTML</li>
-                    <li>CSS, SCSS</li>
-                    <li>Tailwind CSS</li>
-                    <li>Next.js</li>
-                  </ul>
+          <div className='skills_grid_item skills_content'>
+            <section ref={skillsRef} className='skills_section'>
+              <div className='skills_cards_container'>
+                <div className='skill_card' ref={addToSkillCardsRef}>
+                  <div className='card_header'>
+                    <div className='card_icon'>💻</div>
+                    <h3 className='card_title'>Frontend</h3>
+                  </div>
+                  <div className='skills_list'>
+                    {[
+                      'React.js',
+                      'React Native',
+                      'JavaScript',
+                      'HTML',
+                      'CSS/SCSS',
+                      'Tailwind CSS',
+                      'Next.js',
+                    ].map((skill, index) => (
+                      <span
+                        key={index}
+                        className='skill_tag'
+                        ref={addToSkillTagsRef}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className='skillCard' style={styles.card}>
-                  <h3>State Management</h3>
-                  <ul>
-                    <li>Redux</li>
-                    <li>Context API</li>
-                  </ul>
+
+                <div className='skill_card' ref={addToSkillCardsRef}>
+                  <div className='card_header'>
+                    <div className='card_icon'>🔄</div>
+                    <h3 className='card_title'>State Management</h3>
+                  </div>
+                  <div className='skills_list'>
+                    {['Redux', 'Context API'].map((skill, index) => (
+                      <span
+                        key={index}
+                        className='skill_tag'
+                        ref={addToSkillTagsRef}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className='skillCard' style={styles.card}>
-                  <h3>Backend</h3>
-                  <ul>
-                    <li>Node.js</li>
-                    <li>Express.js</li>
-                    <li>MongoDB/Mongoose</li>
-                    <li>Firebase</li>
-                    <li>JWT Authentication</li>
-                  </ul>
+
+                <div className='skill_card' ref={addToSkillCardsRef}>
+                  <div className='card_header'>
+                    <div className='card_icon'>⚙️</div>
+                    <h3 className='card_title'>Backend</h3>
+                  </div>
+                  <div className='skills_list'>
+                    {[
+                      'Node.js',
+                      'Express.js',
+                      'MongoDB/Mongoose',
+                      'Firebase',
+                      'JWT Auth',
+                    ].map((skill, index) => (
+                      <span
+                        key={index}
+                        className='skill_tag'
+                        ref={addToSkillTagsRef}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className='skillCard' style={styles.card}>
-                  <h3>Other</h3>
-                  <ul>
-                    <li>Git</li>
-                    <li>Xcode</li>
-                    <li>Android Studio</li>
-                  </ul>
+
+                <div className='skill_card' ref={addToSkillCardsRef}>
+                  <div className='card_header'>
+                    <div className='card_icon'>🛠️</div>
+                    <h3 className='card_title'>Tools & Other</h3>
+                  </div>
+                  <div className='skills_list'>
+                    {['Git', 'Xcode', 'Android Studio'].map((skill, index) => (
+                      <span
+                        key={index}
+                        className='skill_tag'
+                        ref={addToSkillTagsRef}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>
@@ -150,34 +240,6 @@ const Skills = () => {
       </div>
     </div>
   );
-};
-const styles = {
-  skillsSection: {
-    padding: '50px 20px',
-    background: '#f4f4f4',
-    color: '#333',
-    textAlign: 'center',
-  },
-  sectionTitle: {
-    fontSize: '3rem',
-    fontWeight: 'bold',
-    marginBottom: '30px',
-  },
-  skillsContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-    gap: '30px',
-    justifyItems: 'center',
-  },
-  card: {
-    background: '#fff',
-    padding: '20px',
-    borderRadius: '10px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    textAlign: 'center',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-    width: '100%',
-  },
 };
 
 export default Skills;

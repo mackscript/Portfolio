@@ -1,33 +1,368 @@
+// Mixins from your theme.scss
+@mixin bigscreen {
+  @media screen and (max-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin minimobile {
+  @media screen and (max-width: 375px) {
+    @content;
+  }
+}
+
 .skills_container {
   margin-top: 8rem;
+  padding: 0 1rem;
+
   .skills {
+    max-width: 1200px;
+    margin: 0 auto;
+
     &_grid {
       padding: 1rem;
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 20px;
+
       @include tab {
         grid-template-columns: 1fr;
       }
 
       &_item {
         padding: 1.2rem;
+
+        &.skills_content {
+          @include tab {
+            order: 2;
+          }
+        }
       }
     }
 
     &_title {
       display: flex;
       align-items: center;
+
       svg {
         margin-bottom: 0.5rem;
         transform: rotate(145deg);
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+
+        &:hover {
+          transform: rotate(145deg) scale(1.1);
+          filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+        }
       }
+
       p {
         margin-right: 0.4rem;
-        font-family: 'ppb';
+        font-family: 'ppb', sans-serif;
         font-size: 2rem;
         color: #fff;
+        font-weight: bold;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+
+        @include mobile {
+          font-size: 1.5rem;
+        }
       }
+    }
+  }
+}
+
+.skills_section {
+  padding: 0;
+  color: #fff;
+}
+
+.skills_cards_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @include tab {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+}
+
+.skill_card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(20px);
+
+  // Futuristic glow effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.1)
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  // Animated border on hover
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+    &::before {
+      opacity: 1;
+    }
+
+    &::after {
+      transform: translateX(100%);
+    }
+
+    .card_icon {
+      transform: scale(1.2) rotate(10deg);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .skill_tag {
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  @include mobile {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+}
+
+.card_header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+
+  @include mobile {
+    margin-bottom: 1rem;
+    gap: 0.75rem;
+  }
+}
+
+.card_icon {
+  font-size: 1.8rem;
+  padding: 0.8rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+
+  @include mobile {
+    font-size: 1.4rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+  }
+}
+
+.card_title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+
+  @include mobile {
+    font-size: 1.2rem;
+  }
+}
+
+.skills_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  @include mobile {
+    gap: 0.4rem;
+  }
+}
+
+.skill_tag {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+
+  // Subtle glow effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 70%
+    );
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+
+    &::before {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // Subtle animation on hover
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  @include mobile {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 20px;
+  }
+}
+
+// Futuristic loading animation for skill tags
+@keyframes skillTagLoad {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+// Glow animation for cards
+@keyframes cardGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+}
+
+// Subtle animations
+.skill_card {
+  animation: cardGlow 4s ease-in-out infinite;
+}
+
+// Responsive adjustments
+@include bigscreen {
+  .skills_cards_container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@include laptop {
+  .skills_cards_container {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+@include minimobile {
+  .skill_card {
+    padding: 1rem;
+
+    .card_header {
+      margin-bottom: 0.8rem;
+    }
+
+    .skills_list {
+      gap: 0.3rem;
+    }
+
+    .skill_tag {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
     }
   }
 }

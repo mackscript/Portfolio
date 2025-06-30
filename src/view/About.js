@@ -33,6 +33,7 @@ const About = () => {
 
   return (
     <div id='aboutSection' className='' name='section1'>
+      <div className='grid-overlay_t'></div>
       <div ref={aboutRef} className='about_contianer container'>
         <p>
           I'm <span className='pointer'>Ripon Haldar</span>, a passionate

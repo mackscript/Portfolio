@@ -1,3 +1,4 @@
+// Fonts import (uncomment if needed)
 // @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -6,11 +7,17 @@
   box-sizing: border-box;
 }
 
+$primary: #06b6d4;
+$secondary: #22d3ee;
+$accent: #3b82f6;
+$surface: #fff;
+$gray: #9ca3af;
+$dark: #060505;
+
 .hero-container {
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  // background: #060505;
   font-family: 'Inter', sans-serif;
 }
 
@@ -33,9 +40,15 @@
       rgba(0, 212, 255, 0.08) 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.08) 1px, transparent 1px);
-  background-size: 50px 50px;
-  // animation: gridPulse 4s ease-in-out infinite;
+    linear-gradient(90deg, rgba(0, 212, 255, 0.08) 1px, transparent 2px),
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 30%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  background-size: 50px 50px, 50px 50px, cover;
+  background-blend-mode: overlay;
+  pointer-events: none;
 }
 
 .floating-shapes {
@@ -56,42 +69,42 @@
     rgba(255, 107, 107, 0.1)
   );
   animation: float 20s linear infinite;
-}
 
-.shape:nth-child(1) {
-  width: 100px;
-  height: 100px;
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-.shape:nth-child(2) {
-  width: 60px;
-  height: 60px;
-  top: 60%;
-  left: 80%;
-  animation-delay: -5s;
-}
-.shape:nth-child(3) {
-  width: 80px;
-  height: 80px;
-  top: 80%;
-  left: 20%;
-  animation-delay: -10s;
-}
-.shape:nth-child(4) {
-  width: 120px;
-  height: 120px;
-  top: 30%;
-  left: 70%;
-  animation-delay: -15s;
-}
-.shape:nth-child(5) {
-  width: 90px;
-  height: 90px;
-  top: 70%;
-  left: 60%;
-  animation-delay: -7s;
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      @if $i == 1 {
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      } @else if $i == 2 {
+        width: 60px;
+        height: 60px;
+        top: 60%;
+        left: 80%;
+        animation-delay: -5s;
+      } @else if $i == 3 {
+        width: 80px;
+        height: 80px;
+        top: 80%;
+        left: 20%;
+        animation-delay: -10s;
+      } @else if $i == 4 {
+        width: 120px;
+        height: 120px;
+        top: 30%;
+        left: 70%;
+        animation-delay: -15s;
+      } @else if $i == 5 {
+        width: 90px;
+        height: 90px;
+        top: 70%;
+        left: 60%;
+        animation-delay: -7s;
+      }
+    }
+  }
 }
 
 .floating-canvas {
@@ -126,10 +139,10 @@
   z-index: 3;
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.6) 0%,
-    transparent 30%,
-    transparent 70%,
-    rgba(0, 0, 0, 0.6) 100%
+    rgba(0, 0, 0, 0.6) 10%,
+    transparent 10%,
+    transparent 90%,
+    rgba(0, 0, 0, 0.6) 10%
   );
 }
 
@@ -154,33 +167,26 @@
   margin-bottom: 2rem;
 }
 
-.main-name {
-  font-size: clamp(4rem, 12vw, 9rem);
+.main-name,
+.last-name {
   font-weight: 900;
   font-family: 'Fira Code', monospace;
-  background: linear-gradient(45deg, #ffffff, #e0f7ff, #a5f3fd);
   background-clip: text;
   -webkit-background-clip: text;
-  color: #06b6d4;
   -webkit-text-fill-color: transparent;
   line-height: 0.9;
   letter-spacing: -0.02em;
-  // animation: slideUpFade 1s ease-out 0.5s forwards,
-  //   textGlow 2s ease-in-out infinite alternate;
+}
+
+.main-name {
+  font-size: clamp(4rem, 12vw, 9rem);
+  background: linear-gradient(45deg, #ffffff, #e0f7ff, #a5f3fd);
+  color: $primary;
 }
 
 .last-name {
   font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 900;
-  font-family: 'Fira Code', monospace;
-  background: linear-gradient(45deg, #22d3ee, #3b82f6, #8b5cf6);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-
-  // animation: slideUpFade 1s ease-out 0.7s forwards;
+  background: linear-gradient(45deg, $secondary, $accent, #8b5cf6);
 }
 
 .title-container {
@@ -199,12 +205,12 @@
 }
 
 .bracket {
-  color: #22d3ee;
+  color: $secondary;
   font-family: 'Fira Code', monospace;
 }
 
 .title-text {
-  color: #ffffff;
+  color: $surface;
   font-weight: 600;
 }
 
@@ -215,7 +221,7 @@
 
 .description {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: #9ca3af;
+  color: $gray;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -240,10 +246,8 @@
   transform: translateY(100%);
   opacity: 0;
   animation: slideUpFade 1s ease-out 1.6s forwards;
-}
 
-@media (min-width: 640px) {
-  .buttons-container {
+  @media (min-width: 640px) {
     flex-direction: row;
     justify-content: center;
   }
@@ -267,70 +271,66 @@
 }
 
 .btn-primary {
-  background: linear-gradient(45deg, #06b6d4, #3b82f6);
+  background: linear-gradient(45deg, $primary, $accent);
   color: white;
-  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
-}
+  box-shadow: 0 4px 15px rgba($primary, 0.3);
 
-.btn-primary:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
-}
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba($primary, 0.4);
+  }
 
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #2563eb, #8b5cf6);
-  transition: left 0.3s ease;
-  z-index: -1;
-}
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #2563eb, #8b5cf6);
+    transition: left 0.3s ease;
+    z-index: -1;
+  }
 
-.btn-primary:hover::before {
-  left: 0;
+  &:hover::before {
+    left: 0;
+  }
 }
 
 .btn-secondary {
   background: transparent;
-  color: #22d3ee;
-  border: 2px solid #22d3ee;
-  box-shadow: 0 4px 15px rgba(34, 211, 238, 0.2);
+  color: $secondary;
+  border: 2px solid $secondary;
+  box-shadow: 0 4px 15px rgba($secondary, 0.2);
+
+  &:hover {
+    color: #000;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba($secondary, 0.4);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: $secondary;
+    transition: left 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    left: 0;
+  }
 }
 
-.btn-secondary:hover {
-  color: #000;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(34, 211, 238, 0.4);
-}
-
-.btn-secondary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: #22d3ee;
-  transition: left 0.3s ease;
-  z-index: -1;
-}
-
-.btn-secondary:hover::before {
-  left: 0;
-}
-
-.btn-icon {
-  position: relative;
-  z-index: 1;
-  font-family: 'Fira Code', monospace;
-}
-
+.btn-icon,
 .btn-text {
   position: relative;
   z-index: 1;
+  font-family: 'Fira Code', monospace;
 }
 
 .scroll-indicator {
@@ -362,7 +362,7 @@
 .scroll-wheel {
   width: 4px;
   height: 12px;
-  background: #22d3ee;
+  background: $secondary;
   border-radius: 2px;
   margin-top: 8px;
   animation: scrollBounce 2s ease-in-out infinite;
@@ -375,21 +375,21 @@
   z-index: 20;
   width: 56px;
   height: 56px;
-  background: linear-gradient(45deg, #06b6d4, #3b82f6);
+  background: linear-gradient(45deg, $primary, $accent);
   border: none;
   border-radius: 50%;
-  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 4px 20px rgba($primary, 0.4);
   color: white;
   font-family: 'Fira Code', monospace;
   font-size: 1.125rem;
   cursor: pointer;
   transition: all 0.3s ease;
   animation: fabFloat 3s ease-in-out infinite;
-}
 
-.fab:hover {
-  transform: scale(1.1) rotate(10deg);
-  box-shadow: 0 8px 30px rgba(6, 182, 212, 0.6);
+  &:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 8px 30px rgba($primary, 0.6);
+  }
 }
 
 .particles-container {
@@ -406,25 +406,16 @@
   position: absolute;
   width: 2px;
   height: 2px;
-  background: #22d3ee;
+  background: $secondary;
   border-radius: 50%;
   animation: particleMove 10s linear infinite;
 }
 
+// Keyframes
 @keyframes slideUpFade {
   to {
     transform: translateY(0);
     opacity: 1;
-  }
-}
-
-@keyframes gridPulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
   }
 }
 
@@ -472,24 +463,12 @@
   }
 }
 
-@keyframes textGlow {
-  from {
-    text-shadow: 0 0 5px rgba(34, 211, 238, 0.5);
-  }
-  to {
-    text-shadow: 0 0 20px rgba(34, 211, 238, 0.8),
-      0 0 30px rgba(34, 211, 238, 0.6);
-  }
-}
-
 @keyframes particleMove {
   0% {
     transform: translateY(100vh) translateX(0px);
     opacity: 0;
   }
-  10% {
-    opacity: 1;
-  }
+  10%,
   90% {
     opacity: 1;
   }

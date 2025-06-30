@@ -53,7 +53,7 @@ const TextScroll = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       <div className='text_scroll_container' style={{ marginTop: '18rem' }}>
         <div
           className='textRefTwo'

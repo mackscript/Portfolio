@@ -8,20 +8,57 @@ const ModernHero = () => {
   const particlesRef = useRef([]);
 
   const codeIcons = [
-    '<>',
-    '{}',
-    '[]',
-    '()',
-    '/>',
-    '&&',
-    '||',
-    '++',
-    '--',
-    '!=',
-    '==',
-    '<=',
-    '>=',
-    '::',
+    '<>', // JSX / HTML-like
+    '{}', // Blocks / Objects
+    '[]', // Arrays
+    '()', // Function calls / IIFE
+    '/>', // Self-closing tags
+    '=>', // Arrow functions
+    '/* */', // Multi-line comments
+    '//', // Single-line comment
+    '#!', // Shebang (Node.js scripts)
+    'λ', // Lambda / Functional programming
+    '$', // jQuery / DOM selector / variables
+    'fn', // Function shorthand (used in other langs too)
+    'return', // Return keyword
+    '0x', // Hex values (numbers, colors)
+    'async', // Async functions
+    'await', // Await keyword
+    '☁', // Cloud / serverless function
+    '⚡️', // Fast / optimization
+    'import', // Module import
+    'export', // Module export
+    'const', // Constant declaration
+    'let', // Block-scoped variable
+    'var', // Function-scoped variable
+    'null', // Null value
+    'undefined', // Undefined
+    'true', // Boolean true
+    'false', // Boolean false
+    'NaN', // Not-a-number
+    '...', // Spread / rest operator
+    '===', // Strict equality
+    '!==', // Strict inequality
+    '&&', // Logical AND
+    '||', // Logical OR
+    '!', // NOT operator
+    '??', // Nullish coalescing
+    '?.', // Optional chaining
+    'new', // Constructor keyword
+    'class', // ES6 classes
+    'super', // Super keyword
+    'this', // This keyword
+    'try', // Try block
+    'catch', // Catch block
+    'finally', // Finally block
+    'throw', // Throw error
+    'typeof', // Type check
+    'instanceof', // Instance check
+    'debugger', // Pause debugger
+    'setTimeout', // Async API
+    'setInterval', // Repeated interval
+    'console', // Console object
+    'log', // Logging
   ];
 
   useEffect(() => {
@@ -44,7 +81,7 @@ const ModernHero = () => {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 20 + 15,
+          size: Math.random() * 10 + 15,
           speedX: (Math.random() - 0.5) * 0.4,
           speedY: (Math.random() - 0.5) * 0.4,
           opacity: Math.random() * 0.5 + 0.2,
@@ -53,8 +90,8 @@ const ModernHero = () => {
           icon: codeIcons[Math.floor(Math.random() * codeIcons.length)],
           parallaxFactor: Math.random() * 0.02 + 0.01,
           glowIntensity: Math.random() * 0.8 + 0.4,
-          pulseSpeed: Math.random() * 0.03 + 0.02,
-          pulseOffset: Math.random() * Math.PI * 2,
+          // pulseSpeed: Math.random() * 0.03 + 0.02,
+          // pulseOffset: Math.random() * Math.PI * 2,
         });
       }
 
@@ -63,7 +100,7 @@ const ModernHero = () => {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 100 + 50,
+          size: Math.random() * 10 + 20,
           speedX: (Math.random() - 0.5) * 0.2,
           speedY: (Math.random() - 0.5) * 0.2,
           opacity: Math.random() * 0.1 + 0.03,
@@ -73,8 +110,8 @@ const ModernHero = () => {
           parallaxFactor: Math.random() * 0.025 + 0.01,
           isLarge: true,
           glowIntensity: Math.random() * 0.5 + 0.3,
-          pulseSpeed: Math.random() * 0.02 + 0.01,
-          pulseOffset: Math.random() * Math.PI * 2,
+          // pulseSpeed: Math.random() * 0.02 + 0.01,
+          // pulseOffset: Math.random() * Math.PI * 2,
         });
       }
     };
@@ -206,13 +243,7 @@ const ModernHero = () => {
         {/* Animated Background */}
         <div className='animated-bg'>
           <div className='grid-overlay'></div>
-          <div className='floating-shapes'>
-            <div className='shape'></div>
-            <div className='shape'></div>
-            <div className='shape'></div>
-            <div className='shape'></div>
-            <div className='shape'></div>
-          </div>
+          <div className='floating-shapes'></div>
         </div>
 
         {/* Floating Canvas */}
@@ -229,10 +260,6 @@ const ModernHero = () => {
         <div className='main-content'>
           <div className='content-wrapper'>
             {/* Name */}
-            <div className='name-container'>
-              <h1 className='main-name'>RIPON</h1>
-              <h1 className='last-name'>HALDAR</h1>
-            </div>
 
             {/* Title */}
             <div className='title-container'>
@@ -252,18 +279,6 @@ const ModernHero = () => {
                   console.log("Let's build something amazing!");
                 </span>
               </p>
-            </div>
-
-            {/* Buttons */}
-            <div className='buttons-container'>
-              <button className='btn btn-primary' onClick={handleButtonClick}>
-                <span className='btn-icon'>{'{}'}</span>
-                <span className='btn-text'>View My Work</span>
-              </button>
-              <button className='btn btn-secondary' onClick={handleButtonClick}>
-                <span className='btn-icon'>&lt;/&gt;</span>
-                <span className='btn-text'>Get In Touch</span>
-              </button>
             </div>
 
             {/* Scroll Indicator */}
