@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import avatar from '../assets/img/mac_laptop.png';
+import avatar from '../assets/img/mac_smile.png';
 
 const ModernHero = () => {
   const canvasRef = useRef(null);
@@ -137,11 +137,24 @@ const ModernHero = () => {
                 scalable code.
               </p>
               <div className='button-group'>
-                <button className='btn btn-primary'>Get In Touch</button>
-                <button className='btn btn-outline'>Download CV</button>
+                <button className='btn btn-primary pointer'>
+                  Get In Touch
+                </button>
+                <button className='btn btn-outline pointer'>Download CV</button>
               </div>
             </div>
           </div>
+          {/* scroll */}
+          <div class='scroll-indicator-advanced ' onclick='scrollToNext()'>
+            <div class='morphing-circle'>
+              <div class='particle'></div>
+              <div class='particle'></div>
+              <div class='particle'></div>
+              <div class='arrow-advanced'></div>
+            </div>
+          </div>
+          {/* border */}
+          <div className='side_border'></div>
         </div>
       </div>
     </>
