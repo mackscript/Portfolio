@@ -20,7 +20,7 @@ html {
   box-sizing: border-box;
   user-select: none;
   outline: none;
-  cursor: none;
+  // cursor: none;
   // background-color: $darkMode;
 }
 
@@ -32,7 +32,7 @@ h1 {
 }
 // common css
 .darkMode {
-  // height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: $darkMode;
 

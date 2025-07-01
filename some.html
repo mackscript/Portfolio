@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAB Light Button</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: #000000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+      }
+
+      .fab {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffff99 0%, #ffcc00 100%);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #333;
+        box-shadow: 0 0 30px #ffff99, 0 0 60px #ffcc00,
+          0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.5s ease-in-out;
+        z-index: 1000;
+        animation: fabGlow 2s ease-in-out infinite alternate;
+      }
+
+      .fab:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 40px #ffff99, 0 0 80px #ffcc00,
+          0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .fab-light-rays {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.7;
+        transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
+        animation: rotateFab 4s linear infinite;
+      }
+
+      .fab-ray {
+        position: absolute;
+        background: linear-gradient(45deg, transparent, #ffff99, transparent);
+        transform-origin: center;
+        width: 1px;
+        height: 60px;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .fab-ray:nth-child(1) {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      .fab-ray:nth-child(2) {
+        transform: translateX(-50%) rotate(45deg);
+      }
+      .fab-ray:nth-child(3) {
+        transform: translateX(-50%) rotate(90deg);
+      }
+      .fab-ray:nth-child(4) {
+        transform: translateX(-50%) rotate(135deg);
+      }
+      .fab-ray:nth-child(5) {
+        transform: translateX(-50%) rotate(180deg);
+      }
+      .fab-ray:nth-child(6) {
+        transform: translateX(-50%) rotate(225deg);
+      }
+      .fab-ray:nth-child(7) {
+        transform: translateX(-50%) rotate(270deg);
+      }
+      .fab-ray:nth-child(8) {
+        transform: translateX(-50%) rotate(315deg);
+      }
+
+      @keyframes fabGlow {
+        0% {
+          box-shadow: 0 0 20px #ffff99, 0 0 40px #ffcc00,
+            0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        100% {
+          box-shadow: 0 0 40px #ffff99, 0 0 80px #ffcc00,
+            0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      @keyframes rotateFab {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      .demo-text {
+        color: #333;
+        text-align: center;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-text">
+      <h2>FAB Light Button Demo</h2>
+      <p>Check the bottom-right corner for the glowing FAB button!</p>
+    </div>
+
+    <!-- FAB Button -->
+    <button class="fab" aria-label="Turn on power" onclick="handleFabClick()">
+      <div class="fab-light-rays">
+        <div class="fab-ray"></div>
+        <div class="fab-ray"></div>
+        <div class="fab-ray"></div>
+        <div class="fab-ray"></div>
+        <div class="fab-ray"></div>
+        <div class="fab-ray"></div>
+        <div class="fab-ray"></div>
+        <div class="fab-ray"></div>
+      </div>
+      💡
+    </button>
+
+    <script>
+      function handleFabClick() {
+        alert(
+          'FAB clicked! You can replace this with your power toggle logic.'
+        );
+        // Replace this with your actual power toggle functionality
+        // For example: togglePower();
+      }
+    </script>
+  </body>
+</html>

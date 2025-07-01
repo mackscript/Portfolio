@@ -4,7 +4,6 @@ import LoadingScreen from './components/LoadingScreen';
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTheme } from './reducer/themeSlicer';
 import HeroSection from './view/HeroSection';
 import About from './view/About';
 import Skills from './view/Skills';
@@ -27,8 +26,6 @@ function App() {
     ).matches;
 
     console.log('darkMode :>> ', darkMode);
-
-    dispatch(toggleTheme(isDarkMode));
 
     let scrolling = false;
     let targetScroll = window.scrollY;
